@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CompanyStartup</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	<div class="row" style="background-color:#67AB9F;">
+	    <div class="col-md-4">
+	      <div class="navbar-header">
+	        <p>Company StartUp</p>
+	      </div>
+	    </div>
+	    <div class="col-md-8 navbar-header">
+	      <ul>
+	        <% if user_signed_in? %>
+	      	  <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+	        <% else %>
+	          <li>
+	          	<%= link_to "Login", new_user_session_path, :class => 'sign'  %>
+	          </li>
+	          <li>
+	           	<%= link_to "Sign up", new_user_registration_path,:class=>"sign" %>
+	          </li>
+	        <% end %>
+	      	
+	      </ul>
+	    </div>
+	  </div>
+    <%= yield %>
+  </body>
+</html>

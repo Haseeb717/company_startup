@@ -2,6 +2,7 @@ body{
   min-height: 100%;
   background-color: #F7F5F2;
 }
+/* Header Style Start */
 .navbar-header p{
   color: white;
   font-size: 22px;
@@ -31,11 +32,11 @@ body{
   width: 400px;
   max-width: 400px;
   margin: auto;
-  /*padding-bottom: 40px;*/
   background-color: white;
 }
 /* Header End */
-/* Login Style Start */
+
+/* Login and SignUp Style Start */
 .rounded-content-frame__header {
     background-color: rgba(241,238,234,0.2);
     border-bottom: 1px solid #F1EEEA;
@@ -151,8 +152,10 @@ fieldset ol>li {
   background-color: #3b5998;
   color: #FFFFFF;
 }
-
-/* Login Style End */
+.btn--google{
+  background-color: #DB4437;
+  color: #FFFFFF;
+}
 .relative {
     position: relative;
 }
@@ -173,3 +176,7 @@ fieldset ol>li {
   text-align: center;
   color: #3D3D66;
 }
+#error_explanation ul{
+  list-style-type: none;
+}
+/* Login and SignUp Style End */

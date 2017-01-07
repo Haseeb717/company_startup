@@ -179,4 +179,10 @@ fieldset ol>li {
 #error_explanation ul{
   list-style-type: none;
 }
+.custom_textarea{
+  border: 1px solid #dad7d4;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+}
 /* Login and SignUp Style End */

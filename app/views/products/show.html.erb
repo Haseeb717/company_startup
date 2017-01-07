@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @product.title %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @product.project %>
+</p>
+
+<p>
+  <strong>Funding goal:</strong>
+  <%= @product.funding_goal %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @product.description %>
+</p>
+
+<p>
+  <strong>Categry:</strong>
+  <%= @product.categry %>
+</p>
+
+<p>
+  <strong>Facebook url:</strong>
+  <%= @product.facebook_url %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+  <%= @product.website %>
+</p>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>

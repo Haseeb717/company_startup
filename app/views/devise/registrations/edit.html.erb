@@ -21,7 +21,22 @@
 
           <li class="mb3">
             <%= f.label :email,:class=>"offscreen" %>
-            <%= f.email_field :email,:placeholder=>"Email",:required=>true %>
+            <%= f.text_field :email,:placeholder=>"Email",:required=>true %>
+          </li>
+
+          <li class="mb3">
+            <%= f.label :date_of_birth,:class=>"offscreen" %>
+            <%= f.text_field :date_of_birth,:placeholder=>"Date of Birth",:required=>true,:class=>"date_of_birth" %>
+          </li>
+
+          <li class="mb3">
+            <%= f.label :phone_number,:class=>"offscreen" %>
+            <%= f.text_field :phone_number,:placeholder=>"Phone number",:required=>true %>
+          </li>
+
+          <li class="mb3">
+            <%= f.label :country,:class=>"offscreen" %>
+            <%= f.text_field :country,:placeholder=>"Country",:required=>true %>
           </li>
 
           <li class="mb3">
@@ -36,8 +51,14 @@
 
           <li class="mb3">
             <%= f.label :current_password,:class=>"offscreen" %>
-            <%= f.password_field :current_password, autocomplete: "off",:placeholder=>"Current Password",:required=>true %>
+            <%= f.password_field :current_password, autocomplete: "off",:placeholder=>"Current Password"%>
           </li>
+
+          <li class="mb3">
+            <%= f.label :biography,:class=>"offscreen" %>
+            <%= f.text_area :biography,:placeholder=>"Biography",:required=>true,:class=>"custom_textarea" %>
+          </li>
+
 
           <li class="m0">
             <br>
@@ -50,3 +71,12 @@
 </div>
 
 
+<script type="text/javascript">
+  $(function() {
+    $('.date_of_birth').datepicker({
+      dateFormat: 'yy-mm-dd',
+    });
+    
+  });
+  
+</script>

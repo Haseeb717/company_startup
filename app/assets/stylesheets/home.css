@@ -3,31 +3,7 @@ body{
   background-color: #F7F5F2;
 }
 /* Header Style Start */
-.navbar-header p{
-  color: white;
-  font-size: 22px;
-  margin: 0 0 0 10px;
-  padding: 5px 0px;
-  margin-left: 10px;
-  font-weight: bold;
-}
-.navbar-header a,.navbar-header a:hover,.navbar-header a:visited{
-  color: white;
-}
-.navbar-header ul li{
-  float: right;
-  border-right: 1px solid white;
-  color: white;
-  font-size: 14px;
-  padding-right: 10px;
-  padding-left: 10px;
-  font-weight: bold;
-}
-.navbar-header ul {
-  padding-top: 10px;
-  list-style-type: none;
-  padding-right: 15px;
-}
+
 #user-account-form{
   width: 400px;
   max-width: 400px;

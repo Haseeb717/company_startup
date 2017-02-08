@@ -41,6 +41,9 @@ gem 'omniauth-facebook'
 # admin panel
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 gem 'activeadmin', github: 'activeadmin'
+
+# for glypicons
+gem "font-awesome-rails"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -1,0 +1,490 @@
+<!-- Slider -->
+
+	<div id="first-slider">
+	    <div id="carousel-example-generic" class="carousel slide carousel-fade">
+	        <!-- Indicators -->
+	        <ol class="carousel-indicators">
+	            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+	            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+	            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+	            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+	        </ol>
+	        <!-- Wrapper for slides -->
+	        <div class="carousel-inner" role="listbox">
+	            <!-- Item 1 -->
+	            <div class="item active slide1">
+	                <div class="row"><div class="container">
+	                    <div class="col-md-3 text-right">
+	                        <img style="max-width: 200px;"  data-animation="animated zoomInLeft" src="http://s20.postimg.org/pfmmo6qj1/window_domain.png">
+	                    </div>
+	                    <div class="col-md-9 text-left">
+	                        <h3 data-animation="animated bounceInDown">Add images, or even your logo!</h3>
+	                        <h4 data-animation="animated bounceInUp">Easily use stunning effects</h4>             
+	                     </div>
+	                </div></div>
+	             </div> 
+	            <!-- Item 2 -->
+	            <div class="item slide2">
+	                <div class="row"><div class="container">
+	                    <div class="col-md-7 text-left">
+	                        <h3 data-animation="animated bounceInDown"> 50 animation options A beautiful</h3>
+	                        <h4 data-animation="animated bounceInUp">Create beautiful slideshows </h4>
+	                     </div>
+	                    <div class="col-md-5 text-right">
+	                        <img style="max-width: 200px;"  data-animation="animated zoomInLeft" src="http://s20.postimg.org/sp11uneml/rack_server_unlock.png">
+	                    </div>
+	                </div></div>
+	            </div>
+	            <!-- Item 3 -->
+	            <div class="item slide3">
+	                <div class="row"><div class="container">
+	                    <div class="col-md-7 text-left">
+	                        <h3 data-animation="animated bounceInDown">Simple Bootstrap Carousel</h3>
+	                        <h4 data-animation="animated bounceInUp">Bootstrap Image Carousel Slider with Animate.css</h4>
+	                     </div>
+	                    <div class="col-md-5 text-right">
+	                        <img style="max-width: 200px;"  data-animation="animated zoomInLeft" src="http://s20.postimg.org/eq8xvxeq5/globe_network.png">
+	                    </div>     
+	                </div></div>
+	            </div>
+	            <!-- Item 4 -->
+	            <div class="item slide4">
+	                <div class="row"><div class="container">
+	                    <div class="col-md-7 text-left">
+	                        <h3 data-animation="animated bounceInDown">We are creative</h3>
+	                        <h4 data-animation="animated bounceInUp">Get start your next awesome project</h4>
+	                     </div>
+	                    <div class="col-md-5 text-right">
+	                        <img style="max-width: 200px;"  data-animation="animated zoomInLeft" src="http://s20.postimg.org/9vf8xngel/internet_speed.png">
+	                    </div>  
+	                </div></div>
+	            </div>
+	            <!-- End Item 4 -->
+	    
+	        </div>
+	        <!-- End Wrapper for slides-->
+	        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+	            <i class="fa fa-angle-left"></i><span class="sr-only">Previous</span>
+	        </a>
+	        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+	            <i class="fa fa-angle-right"></i><span class="sr-only">Next</span>
+	        </a>
+	    </div>
+	</div>
+<!-- Slider -->
+
+
+<!-- Tabs Content -->
+<div class="tabs-area">	
+	<div class="container">
+
+				<!-- tabs -->
+				<div class="tabbable tabs-right">
+					<ul class="nav nav-tabs">
+						<% Category.all.each_with_index do |category,index| %>
+							
+							<li <%= 'class=active' if index == 0 %> ><a href="#<%= category.name %>" data-toggle="tab"><%= category.name %></a></li>
+						<% end %>
+						<!-- <li class="active"><a href="#art" data-toggle="tab">Art</a></li>
+						<li><a href="#comics" data-toggle="tab">Comics</a></li>
+						<li><a href="#crafts" data-toggle="tab">Crafts</a></li>
+						<li><a href="#dance" data-toggle="tab">Dance</a></li>
+						<li><a href="#design" data-toggle="tab">Design</a></li>
+						<li><a href="#fashion" data-toggle="tab">Fashion</a></li>
+						<li><a href="#food" data-toggle="tab">Food</a></li> -->
+					</ul>
+					<div class="tab-content">
+						<% Product.all.group_by(&:category_id).each_with_index do |products,index| %>
+							<% product = products[1].first %>
+							<div class="tab-pane <%= 'active' if index == 0 %>" id="<%= product.category.name %>" > 
+								<h3 class="regularfont">Projects We Love: <%= product.category.name %> 
+									<span class="pull-right">
+										<%= link_to products_path(:category_id=>product.category.id) do %>
+											<small>See all <%= product.category.name %> projects</small>
+										<% end %>
+									</span>
+								</h3>												
+								<div class="row">
+									<div class="col-sm-4 col-md-4">
+										<%= image_tag 'comics.jpg', :class=>"img-responsive marginTop20" %>
+									</div>
+									<div class="col-sm-6 col-md-6">
+										<h3 class="regularfont"><%= product.short_description.slice(0,20) %> </h3>	
+										<p>by <%= product.user.name %> </p>
+
+										<h4 class="marginTop20 lineHeight24"><%= product.description.slice(0,100) %></h4>
+										<p>
+											<span><%= fa_icon "map-marker" %></i>  <%= product.location %> </span> &nbsp;&nbsp;
+											<span><%= fa_icon "tag" %></i>  <%= product.category.name %> </span> 
+										</p>
+										<div class="progress customPrograss">
+										  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+										    <span class="sr-only">0% Complete (success)</span>
+										  </div>
+										</div>
+										<ul class="packages">
+											<li>
+												<strong class="displayBlock">0%</strong>
+												<span>funded</span>
+											</li>
+											<li>
+												<strong class="displayBlock">$<%= product.funding_goal %> </strong>
+												<span>Goal</span>
+											</li>
+											<li>
+												<strong class="displayBlock"><%= product.backers_total %></strong>
+												<span>backers </span>
+											</li>
+											<li>
+												<strong class="displayBlock">60</strong>
+												<span>days to go</span>
+											</li>
+										</ul>
+									</div> <!-- col-md-6 -->	
+								</div>	<!-- row -->	
+							</div>
+						<% end %>
+						
+					</div> <!-- tab-content -->
+				</div>
+				<!-- /tabs -->							
+	</div> <!-- container -->
+</div><!-- tabs-area -->
+<!-- Tabs Content -->
+
+<hr />
+
+<!-- Recommended-->
+	<div class="recommended">
+		<div class="container">
+			<h3 class="regularfont">Recommended for you 
+				<span class="pull-right btn btn-default">See all</span></h3>
+
+				<div class="row marginTop20">	
+					<div class="col-sm-4 col-md-4">
+					    <div class="thumbnail">
+					    	<%= image_tag 'pic1.jpg' %>
+					      <div class="caption">
+					        <h5 class="regularfont">Tortuga 1667: A Pirate Game of Mutiny, Plunder & Deceit</h5>
+					        <p>by Travis Hancock</p>
+
+					        <p class="marginTop10">Steal treasure from the Spanish, but be wary of greedy crewmates who may be secretly plotting to maroon you to the island of Tortuga.</p>
+
+					        <p class="marginTop20">
+					        	<span><%= fa_icon "map-marker" %>  Los Angeles, CA  </span>
+					        </p>
+					        <div class="progress customPrograss">
+								<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+									<span class="sr-only">100% Complete (success)</span>
+								</div>
+							</div>
+
+							<ul class="packages">
+								<li>
+									<strong class="displayBlock">154%</strong>
+									<span>funded</span>
+								</li>
+								<li>
+									<strong class="displayBlock">$10,797</strong>
+									<span>pledged</span>
+								</li>
+								<li>
+									<strong class="displayBlock">22</strong>
+									<span>days to go</span>
+								</li>
+							</ul>
+					      </div>
+					    </div> <!-- thumbnail -->
+					  </div> <!-- col-md-4 -->
+
+					  <div class="col-sm-4 col-md-4">
+					    <div class="thumbnail">
+					    	<%= image_tag 'pic2.jpg' %>
+					      <div class="caption">
+					        <h5 class="regularfont">Chameleon Pens Color Tops: Seamless Color To Color Blends</h5>
+					        <p>by Chameleon Art Product</p>
+
+					        <p class="marginTop10">A whole NEW way to blend color! Create simple seamless color to color blends. The pen literally does the blending for you!</p>
+
+					        <p class="marginTop20">
+					        	<span><%= fa_icon "map-marker" %>  Indianapolis, IN</span>
+					        </p>
+					        <div class="progress customPrograss">
+								<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+									<span class="sr-only">100% Complete (success)</span>
+								</div>
+							</div>
+
+							<ul class="packages">
+								<li>
+									<strong class="displayBlock">754%</strong>
+									<span>funded</span>
+								</li>
+								<li>
+									<strong class="displayBlock">$110,797</strong>
+									<span>pledged</span>
+								</li>
+								<li>
+									<strong class="displayBlock">23</strong>
+									<span>days to go</span>
+								</li>
+							</ul>
+					      </div>
+					    </div> <!-- thumbnail -->
+					  </div> <!-- col-md-4 -->
+
+					  <div class="col-sm-4 col-md-4">
+					    <div class="thumbnail">
+
+					      <%= image_tag 'pic3.jpg' %>
+					      <div class="caption">
+					        <h5 class="regularfont">Trickster</h5>
+					        <p>by Action Phase Games</p>
+
+					        <p class="marginTop10">Steal treasure from the Spanish, but be wary of greedy crewmates who may be secretly plotting to maroon you to the island of Tortuga.</p>
+
+					        <p class="marginTop20">
+					        	<span><%= fa_icon "map-marker" %>   Indianapolis, IN  </span>
+					        </p>
+					        <div class="progress customPrograss">
+								<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+									<span class="sr-only">100% Complete (success)</span>
+								</div>
+							</div>
+
+							<ul class="packages">
+								<li>
+									<strong class="displayBlock">114%</strong>
+									<span>funded</span>
+								</li>
+								<li>
+									<strong class="displayBlock">$11,797</strong>
+									<span>pledged</span>
+								</li>
+								<li>
+									<strong class="displayBlock">22</strong>
+									<span>days to go</span>
+								</li>
+							</ul>
+					      </div>
+					    </div> <!-- thumbnail -->
+					  </div> <!-- col-md-4 -->	
+				</div> <!-- row -->	
+		</div> <!-- container -->
+	</div>
+<!-- Recommended-->
+
+<!-- popular-->
+	<div class="popular">
+		<div class="container">
+			<h3 class="regularfont">What's Popular 
+				<span class="pull-right btn btn-default">See all</span></h3>
+
+				<div class="row marginTop20">	
+					<div class="col-sm-4 col-md-4">
+					    <div class="thumbnail">
+					      <%= image_tag 'pic4.jpg' %>
+					      <div class="caption">
+					        <h5 class="regularfont">Tortuga 1667: A Pirate Game of Mutiny, Plunder & Deceit</h5>
+					        <p>by Travis Hancock</p>
+
+					        <p class="marginTop10">Steal treasure from the Spanish, but be wary of greedy crewmates who may be secretly plotting to maroon you to the island of Tortuga.</p>
+
+					        <p class="marginTop20">
+					        	<span><%= fa_icon "map-marker" %>  Los Angeles, CA  </span>
+					        </p>
+					        <div class="progress customPrograss">
+								<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+									<span class="sr-only">100% Complete (success)</span>
+								</div>
+							</div>
+
+							<ul class="packages">
+								<li>
+									<strong class="displayBlock">154%</strong>
+									<span>funded</span>
+								</li>
+								<li>
+									<strong class="displayBlock">$10,797</strong>
+									<span>pledged</span>
+								</li>
+								<li>
+									<strong class="displayBlock">22</strong>
+									<span>days to go</span>
+								</li>
+							</ul>
+					      </div>
+					    </div> <!-- thumbnail -->
+					  </div> <!-- col-md-4 -->
+
+					  <div class="col-sm-4 col-md-4">
+					    <div class="thumbnail">
+					    	<%= image_tag 'pic5.png' %>
+					      <div class="caption">
+					        <h5 class="regularfont">Chameleon Pens Color Tops: Seamless Color To Color Blends</h5>
+					        <p>by Chameleon Art Product</p>
+
+					        <p class="marginTop10">A whole NEW way to blend color! Create simple seamless color to color blends. The pen literally does the blending for you!</p>
+
+					        <p class="marginTop20">
+					        	<span><%= fa_icon "map-marker" %>  Indianapolis, IN</span>
+					        </p>
+					        <div class="progress customPrograss">
+								<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+									<span class="sr-only">100% Complete (success)</span>
+								</div>
+							</div>
+
+							<ul class="packages">
+								<li>
+									<strong class="displayBlock">754%</strong>
+									<span>funded</span>
+								</li>
+								<li>
+									<strong class="displayBlock">$110,797</strong>
+									<span>pledged</span>
+								</li>
+								<li>
+									<strong class="displayBlock">23</strong>
+									<span>days to go</span>
+								</li>
+							</ul>
+					      </div>
+					    </div> <!-- thumbnail -->
+					  </div> <!-- col-md-4 -->
+
+					  <div class="col-sm-4 col-md-4">
+					    <div class="thumbnail">
+					      <%= image_tag 'pic6.jpg' %>
+					      <div class="caption">
+					        <h5 class="regularfont">Trickster</h5>
+					        <p>by Action Phase Games</p>
+
+					        <p class="marginTop10">Steal treasure from the Spanish, but be wary of greedy crewmates who may be secretly plotting to maroon you to the island of Tortuga.</p>
+
+					        <p class="marginTop20">
+					        	<span><%= fa_icon "map-marker" %>   Indianapolis, IN  </span>
+					        </p>
+					        <div class="progress customPrograss">
+								<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+									<span class="sr-only">100% Complete (success)</span>
+								</div>
+							</div>
+
+							<ul class="packages">
+								<li>
+									<strong class="displayBlock">114%</strong>
+									<span>funded</span>
+								</li>
+								<li>
+									<strong class="displayBlock">$11,797</strong>
+									<span>pledged</span>
+								</li>
+								<li>
+									<strong class="displayBlock">22</strong>
+									<span>days to go</span>
+								</li>
+							</ul>
+					      </div>
+					    </div> <!-- thumbnail -->
+					  </div> <!-- col-md-4 -->	
+				</div> <!-- row -->
+
+		</div> <!-- container -->
+	</div>
+<!-- Popular-->
+
+<!-- Connect Facebook -->
+		<div class="connectFacebook">
+			<div class="container">
+					<div class="fbbox">
+						<div class="col-sm-8 col-md-8">
+							<h1>Discover great projects with your Facebook friends.</h1>
+							<p><a href="">Learn more about Following</a></p>
+						</div>
+						<div class="col-sm-4 col-md-4 marginTop20 text-center">
+							<button class="btn btn-primary btn-lg"><span class="fa fa-facebook"></span> Connect with Facebook</button>
+							<h4>We'll never post anything on Facebook without your permission.</h4>
+						</div>
+					</div>	 <!-- row -->
+			</div> <!-- container -->	
+		</div>
+<!-- Connect Facebook --> 
+
+<!-- curatedPages -->
+	<div class="curatedPages">
+		<div class="container">
+			<div class='row'>
+			    <div class='col-md-12'>
+			      <div class="carousel slide media-carousel" id="media">
+			        <div class="carousel-inner">
+			          <div class="item  active">
+			            <div class="row">
+			              <div class="col-sm-2 col-md-2">
+			                <a class="thumbnail" href="#"><%= image_tag 'owl1.jpg' %></a>
+			              </div>          
+			              <div class="col-sm-2 col-md-2">
+			                <a class="thumbnail" href="#"><%= image_tag 'owl2.png' %></a>
+			              </div>
+			              <div class="col-sm-2 col-md-2">
+			                <a class="thumbnail" href="#"><%= image_tag 'owl3.png' %></a>
+			              </div>
+			              <div class="col-sm-2 col-md-2">
+			                <a class="thumbnail" href="#"><%= image_tag 'owl4.png' %></a>
+			              </div>
+			              <div class="col-sm-2 col-md-2">
+			                <a class="thumbnail" href="#"><%= image_tag 'owl5.png' %></a>
+			              </div>
+			              <div class="col-sm-2 col-md-2">
+			                <a class="thumbnail" href="#"><%= image_tag 'owl6.png' %></a>
+			              </div>
+			            </div>
+			          </div>
+			          <div class="item">
+			            <div class="row">
+			              <div class="col-sm-2 col-md-2">
+			                <a class="thumbnail" href="#"><%= image_tag 'owl5.png' %></a>
+			              </div>          
+			              <div class="col-sm-2 col-md-2">
+			                <a class="thumbnail" href="#"><%= image_tag 'owl3.png' %></a>
+			              </div>
+			              <div class="col-sm-2 col-md-2">
+			                <a class="thumbnail" href="#"><%= image_tag 'owl6.png' %></a>
+			              </div>
+			              <div class="col-sm-2 col-md-2">
+			                <a class="thumbnail" href="#"><%= image_tag 'owl2.png' %></a>
+			              </div>
+			              <div class="col-sm-2 col-md-2">
+			                <a class="thumbnail" href="#"><%= image_tag 'owl4.png' %></a>
+			              </div>
+			              <div class="col-sm-2 col-md-2">
+			                <a class="thumbnail" href="#"><%= image_tag 'owl1.jpg' %></a>
+			              </div>
+			              
+			            </div>
+			          </div>
+			        
+			        </div>
+			        <a data-slide="prev" href="#media" class="left carousel-control">‹</a>
+			        <a data-slide="next" href="#media" class="right carousel-control">›</a>
+			      </div>                          
+			    </div>
+			  </div>	
+
+		</div> <!-- container -->							
+	</div>
+<!-- curatedPages -->
+
+<!-- projectcome -->
+	<div class="projectcome">
+		<div class="container text-center">
+			<div class="row">
+			 <div class="col-md-offset-2 col-md-8 col-md-offset-2">
+				<h2>Where projects come from</h2>
+				<h4 class="marginTop20 lineHeight24">Each and every Kickstarter project is the independent creation of someone like you. Want to know more about how projects happen, or start your own?</h4>
+				<a href="" class="btn btn-success marginTop10"> Learn More </a>
+			 </div>
+			</div>	
+		</div>	
+	</div>
+<!-- projectcome -->

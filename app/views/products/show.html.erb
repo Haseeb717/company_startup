@@ -1,39 +1,76 @@
-<p id="notice"><%= notice %></p>
+<!-- blog -->
+<div class="container">
+        
+  <br />
+  <h1 >
+    <%= @product.user.name %>
+  </h1>
 
-<p>
-  <strong>Title:</strong>
-  <%= @product.title %>
-</p>
+  <h4 class="col-md-8 marginLeft-15"><%= @product.description %></h4>
 
-<p>
-  <strong>Project:</strong>
-  <%= @product.project %>
-</p>
+  <div class="row">
+    <div class="col-md-8">
+  
+      <!--  <img src="http://placehold.it/900x300" class="img-responsive"> -->
+    
+      <div class="vid">
+        <video width="100%" controls="">
+          <source src="https://ksr-video.imgix.net/projects/2760435/video-738279-h264_high.mp4" type="video/mp4">
+        </video>
+      </div> <!-- vid -->
 
-<p>
-  <strong>Funding goal:</strong>
-  <%= @product.funding_goal %>
-</p>
+      <hr>
+      <p class="lead"><%= @product.description %></p>
+      <p><b>Future Plans: </b> <%= @product.future_plans %></p>
+      <p><b>Risks and Challenges: </b><%= @product.risks %></p>
+      <hr>
 
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
+      <div class="pull-left"><%= image_tag "julia.jpg" ,:class=>"img-circle" %>
+       <p>By <%= @product.user.name %> </p>
+       <p><%= time_ago_in_words(@product.created_at) + " ago" %></p>
+       <p><button class="btn btn-default">Follow</button></p>
+      </div>
+      <div class="pull-right">
+        <p>
+          <i class="fa fa-calendar"></i> Posted on <%= @product.created_at.strftime("%d %b. %Y") %>
+        </p>
+        <p>
+          <i class="fa fa-tags"></i> Category: <a href=""><span class="badge badge-info"><%= @product.category.name %></span></a> 
+        </p>
+      </div>
+      <div class="clearfix"></div>
+      <hr>
+    </div> <!-- col-md-8 -->
 
-<p>
-  <strong>Categry:</strong>
-  <%= @product.categry %>
-</p>
+    <div class="col-md-4">                  
+      <div class="borderTopgreen"></div>
+      <h2>$<%= @product.raised_amount.nil? ? 0 : @product.raised_amount %></h2>
+      <p>rasied of $<%= @product.funding_goal %> goal</p>
 
-<p>
-  <strong>Facebook url:</strong>
-  <%= @product.facebook_url %>
-</p>
+      <h2><%= @product.backers_total %></h2>
+      <p>backers</p>
 
-<p>
-  <strong>Website:</strong>
-  <%= @product.website %>
-</p>
+      <h2>60</h2>
+      <p>days to go</p>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+      <a class="btn btn-success btn-lg product_back_button">Back This Project</a>
+      <p class="marginTop20">
+        <button class="btn btn-default"><i class="fa fa-star"></i> Remind me</button> &nbsp;&nbsp;
+        <button class="btn btn-default"><i class="fa fa-share"></i> Share</button>
+        <%= link_to edit_product_path(@product),:class=>"btn btn-default" do %>
+        <%= fa_icon "flag" %> Report
+      <% end %>
+      </p>
+      <% if @product.user == current_user %>
+        <p>
+          <%= link_to edit_product_path(@product),:class=>"btn btn-info btn-lg product_edit_button" do %>
+            <%= fa_icon "edit" %> Edit
+          <% end %>
+        </p>
+      <% end %>
+    </div> <!-- col-md-4 -->
+
+  </div> <!-- row -->
+</div> <!-- container -->
+
+<!-- blog -->

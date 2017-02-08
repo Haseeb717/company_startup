@@ -1,9 +1,9 @@
 <div class="jumbotron">
   <div class="container"> 
-    <%= form_tag(products_path, :method => :get) do %>
+    <%= form_tag(my_projects_path, :method => :get) do %>
       <%= select_tag 'category_id', options_for_select(Category.all.map{ |category| [category.name,category.id]}), {:prompt => "All Categories",:id=>"soflow",onchange: "this.form.submit();"} %>
     <% end %>
-    
+    <h4>Bright new ideas, handpicked by us.</h4>
     <h4 class="marginTop20 regularfont">Refine search</h4>
   </div>
 </div>
@@ -18,11 +18,9 @@
         <% @products.each do |product| %>
           <div class="col-sm-3 col-md-3">
             <div class="thumbnail">
-              <%= link_to product_path(product) do %>
-                <%= image_tag "pic1.jpg" %>
-              <% end %>
+              <%= image_tag "pic1.jpg" %>
               <div class="caption">
-                <h5 class="regularfont"><%= link_to product.short_description.slice(0,55),product_path(product) %></h5>
+                <h5 class="regularfont"><%= product.short_description.slice(0,55) %></h5>
                 <p>by <%= product.user.name %></p>
 
                 <p class="marginTop10"><%= product.description.slice(0,130) %></p>
@@ -31,7 +29,7 @@
                   <span><%= fa_icon "map-marker" %>  <%= product.location %>  </span>
                 </p>
                 <div class="progress customPrograss">
-                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
                     <span class="sr-only">0% Complete (success)</span>
                   </div>
                 </div>
@@ -51,6 +49,7 @@
                   <span>days to go</span>
                 </li>
               </ul>
+              </div>
             </div> <!-- thumbnail -->
           </div> <!-- col-md-3 -->
         <% end %>

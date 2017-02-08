@@ -11,7 +11,7 @@
           <ol>
             <li><%= devise_error_messages! %></li>
             <li class="mb3">
-              <%= f.text_field :email, autofocus: true,:placeholder=>"Email",:required=>true,:pattern=>"^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$" %>
+              <%= f.email_field :email, autofocus: true,:placeholder=>"Email",:required=>true %>
             </li>
           </ol>
 

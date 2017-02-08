@@ -81,17 +81,11 @@
 				<!-- tabs -->
 				<div class="tabbable tabs-right">
 					<ul class="nav nav-tabs">
-						<% Category.all.each_with_index do |category,index| %>
-							
-							<li <%= 'class=active' if index == 0 %> ><a href="#<%= category.name %>" data-toggle="tab"><%= category.name %></a></li>
+						<% Product.all.group_by(&:category_id).each_with_index do |products,index| %>
+							<% product = products[1].first %>
+							<li <%= 'class=active' if index == 0 %> ><a href="#<%= product.category.name %>" data-toggle="tab"><%= product.category.name %></a></li>
 						<% end %>
-						<!-- <li class="active"><a href="#art" data-toggle="tab">Art</a></li>
-						<li><a href="#comics" data-toggle="tab">Comics</a></li>
-						<li><a href="#crafts" data-toggle="tab">Crafts</a></li>
-						<li><a href="#dance" data-toggle="tab">Dance</a></li>
-						<li><a href="#design" data-toggle="tab">Design</a></li>
-						<li><a href="#fashion" data-toggle="tab">Fashion</a></li>
-						<li><a href="#food" data-toggle="tab">Food</a></li> -->
+						
 					</ul>
 					<div class="tab-content">
 						<% Product.all.group_by(&:category_id).each_with_index do |products,index| %>

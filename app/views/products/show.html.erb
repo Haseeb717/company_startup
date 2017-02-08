@@ -53,12 +53,14 @@
       <h2>60</h2>
       <p>days to go</p>
 
-      <a class="btn btn-success btn-lg product_back_button">Back This Project</a>
+      <% backed = BackProduct.where(:user_id=>current_user.id,:product_id=>@product.id) %>
+
+      <%= link_to_if backed.empty?, "Back this Project" ,back_product_path(@product),:class=>"btn btn-success btn-lg product_back_button" %>
       <p class="marginTop20">
         <button class="btn btn-default"><i class="fa fa-star"></i> Remind me</button> &nbsp;&nbsp;
         <button class="btn btn-default"><i class="fa fa-share"></i> Share</button>
-        <%= link_to edit_product_path(@product),:class=>"btn btn-default" do %>
-        <%= fa_icon "flag" %> Report
+        <%= link_to report_product_path(@product),:class=>"btn btn-default" do %>
+        <%= fa_icon "flag" %> Report <%= ReportProduct.where(:product_id=>@product.id).count %>
       <% end %>
       </p>
       <% if @product.user == current_user %>

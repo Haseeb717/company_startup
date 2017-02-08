@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 
-	before_action :set_product, only: [:show, :edit, :update, :destroy]
+	before_action :set_product, only: [:show, :edit, :update, :destroy,:back,:report]
   before_action :authenticate_user!, except: [:index]
 
 	# GET /products
@@ -71,6 +71,22 @@ class ProductsController < ApplicationController
       @products = Product.where(:user_id=>current_user.id)
     else
       @products = Product.where(:category_id=>params["category_id"],:user_id=>current_user.id)
+    end
+  end
+
+  def back
+    BackProduct.create(:product_id=>@product.id,:user_id=>current_user.id)
+    backers_total = @product.backers_total + 1
+    @product.update(:backers_total=>backers_total)
+    respond_to do |format|
+      format.html { redirect_to @product }
+    end
+  end
+
+  def report
+    ReportProduct.create(:product_id=>@product.id,:user_id=>current_user.id)
+    respond_to do |format|
+      format.html { redirect_to @product }
     end
   end
 

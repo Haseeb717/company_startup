@@ -5,6 +5,8 @@ class User < ApplicationRecord
        :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable
 
   has_many :products
+  has_many :back_products
+  has_many :report_products
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize do |user|

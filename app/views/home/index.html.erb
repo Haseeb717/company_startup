@@ -103,7 +103,7 @@
 										<%= image_tag 'comics.jpg', :class=>"img-responsive marginTop20" %>
 									</div>
 									<div class="col-sm-6 col-md-6">
-										<h3 class="regularfont"><%= product.short_description.slice(0,20) %> </h3>	
+										<h3 class="regularfont"><%= link_to product.short_description.slice(0,20) , product_path(product) %> </h3>	
 										<p>by <%= product.user.name %> </p>
 
 										<h4 class="marginTop20 lineHeight24"><%= product.description.slice(0,100) %></h4>

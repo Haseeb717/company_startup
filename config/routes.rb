@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :products
+  resources :products do
+  	member do 
+	  	get 'back'
+	  	get 'report'
+	  end
+  end 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users, controllers: { :omniauth_callbacks => "omniauth_callbacks",registrations: 'registrations' }

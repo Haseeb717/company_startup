@@ -525,168 +525,7 @@ body{
 }
 /******* Start Page ********/
 /*******  Project Page ********/
-.projectTab{
-  padding-bottom: 30px;
-  padding-top: 30px;
-  background: #F7F5F2;
-}
-.projectTab .nav-tabs { border-bottom: 2px solid #DDD; }
-.projectTab .nav-tabs > li.active > a, .projectTab .nav-tabs > li.active > a:focus, .projectTab .nav-tabs > li.active > a:hover { 
-  border-width: 0; 
-}
-  .projectTab .nav-tabs > li > a { border: none; color: #ffffff;background: #5a4080; padding: 10px 40px;}
-      .projectTab .nav-tabs > li.active > a, .projectTab .nav-tabs > li > a:hover { border: none;  color: #5a4080 !important; background: #fff; }
-    .projectTab .nav-tabs > li > a::after { content: ""; background: #5a4080; height: 2px; position: absolute; width: 100%; left: 0px; bottom: -1px; transition: all 250ms ease 0s; transform: scale(0); }
-    .projectTab .nav-tabs > li.active > a::after, .projectTab .nav-tabs > li:hover > a::after { transform: scale(1); }
-.projectTab .tab-nav > li > a::after { background: #5a4080 none repeat scroll 0% 0%; color: #fff; }
-.projectTab .tab-pane { padding: 15px 0; }
-.projectTab .tab-content{padding:20px}
-.projectTab .nav-tabs > li  {//width:20%; text-align:center;}
-.projectTab .card { margin-bottom: 20px; }
-.projectTab .tab-content .form-control{
-  height: auto;
-}
 
-@media all and (max-width:724px){
-.projectTab .nav-tabs > li > a > span {display:none;} 
-.projectTab .nav-tabs > li > a {padding: 5px 5px;}
-}
-
-.contentproject{
-  padding: 20px;
-  background: #fff;
-  border:1px solid #eee;
-  margin-top: 40px;
-}
-
-.bs-calltoaction{
-    position: relative;
-    width:auto;
-    padding: 15px 25px;
-    border: 1px solid black;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
-.bs-calltoaction.bs-calltoaction-info{
-    //color: #fff;
-    background-color: #eee;
-    border-color: #ddd;
-    opacity: 0.8;
-}
-.cta-button{
-     padding-top: 10px;
-     padding-bottom: 10px;
-}
-.rewardslist{
-  padding-left: 15px;
-}
-.rewardslist li{
-  margin-bottom: 5px;
-}
-/*******  Project Page ********/
-
-/******* Description *********/
-.vid {
-    position: relative;
-    padding-bottom: 56.25%;
-    padding-top: 30px; height: 0; overflow: hidden;
-}
- 
-.vid iframe,
-.vid object,
-.vid embed {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-.borderTopgreen{
-  height: 3px;
-  background: green;
-  
-}
-/******* Description *********/
-
-/******* Reward *************/
-.reward .panel-title > a:before {
-    float: right !important;
-    font-family: FontAwesome;
-    content:"\f055";
-    padding-right: 5px;
-}
-.reward .panel-title > a.collapsed:before {
-    float: right !important;
-    content:"\f056";
-}
-.reward .panel-title > a:hover, 
-.reward .panel-title > a:active, 
-.reward .panel-title > a:focus  {
-    text-decoration:none;
-}
-
-select#soflow {
-   -webkit-appearance: button;
-   -webkit-border-radius: 2px;
-   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
-   -webkit-padding-end: 20px;
-   -webkit-padding-start: 2px;
-   -webkit-user-select: none;
-   cursor: pointer;
-   background-image: url('selectimg.png'), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
-   background-position: 97% center;
-   background-repeat: no-repeat;
-   border: 1px solid #AAA;
-   color: #555;
-   font-size: inherit;
-   //margin: 20px;
-   overflow: hidden;
-   padding: 5px 10px;
-   text-overflow: ellipsis;
-   white-space: nowrap;
-   width: 300px;
-}
-
-/******* Reward *************/
-
-/************* Extra Css ***********/
-.marginLeft-15{
-  margin-left: -15px;
-}
-.marginTop20{
-	margin-top: 20px;
-}
-.marginTop10{
-	margin-top: 10px;
-}
-.lineHeight24{
-	line-height: 24px;
-}
-.regularfont{
-	font-family: 'introRegular';
-}
-.green{
-  color: #2BDE73;
-}
-.darkblue{
-  color: #020621;
-}
-.black{
-  color: #000;
-}
-.white{
-  color: #fff;
-}
-.white:hover{
-  color: #fff;
-}
-.marginLeft150{
-	margin-left: 150px;
-}
-.font20{
-	font-size: 20px;
-}
 
 
 /* Custom CSS */
@@ -704,3 +543,38 @@ select#soflow {
 
 
 
+/************* Media ***********/
+@media(min-width: 298px) and (max-width: 410px){
+.fbbox{
+	padding: 0;
+}
+
+}
+
+
+@media(min-width: 298px) and (max-width: 767px){
+.marginLeft150{
+		margin-left: 0;
+}
+.footerList{
+	float: left;
+}
+
+}
+
+@media(min-width: 768px) and (max-width: 991px){
+.marginLeft150{
+		margin-left: 0;
+}
+.forMedia768{
+	margin-right: -80px;
+    margin-top: -50px;
+}
+}
+
+@media(min-width: 992px) and (max-width: 1199px){
+.marginLeft150{
+		margin-left: 70px;
+}
+
+}

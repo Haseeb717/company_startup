@@ -525,7 +525,87 @@ body{
 }
 /******* Start Page ********/
 /*******  Project Page ********/
+.projectTab{
+  padding-bottom: 30px;
+  padding-top: 30px;
+  background: #F7F5F2;
+}
+.projectTab .nav-tabs { border-bottom: 2px solid #DDD; }
+.projectTab .nav-tabs > li.active > a, .projectTab .nav-tabs > li.active > a:focus, .projectTab .nav-tabs > li.active > a:hover { 
+  border-width: 0; 
+}
+  .projectTab .nav-tabs > li > a { border: none; color: #ffffff;background: #5a4080; padding: 10px 40px;}
+      .projectTab .nav-tabs > li.active > a, .projectTab .nav-tabs > li > a:hover { border: none;  color: #5a4080 !important; background: #fff; }
+    .projectTab .nav-tabs > li > a::after { content: ""; background: #5a4080; height: 2px; position: absolute; width: 100%; left: 0px; bottom: -1px; transition: all 250ms ease 0s; transform: scale(0); }
+    .projectTab .nav-tabs > li.active > a::after, .projectTab .nav-tabs > li:hover > a::after { transform: scale(1); }
+.projectTab .tab-nav > li > a::after { background: #5a4080 none repeat scroll 0% 0%; color: #fff; }
+.projectTab .tab-pane { padding: 15px 0; }
+.projectTab .tab-content{padding:20px}
+.projectTab .nav-tabs > li  {text-align:center;}
+.projectTab .card { margin-bottom: 20px; }
+.projectTab .tab-content .form-control{
+  height: auto;
+}
 
+@media all and (max-width:724px){
+.projectTab .nav-tabs > li > a > span {display:none;} 
+.projectTab .nav-tabs > li > a {padding: 5px 5px;}
+}
+
+.contentproject{
+  padding: 20px;
+  background: #fff;
+  border:1px solid #eee;
+  margin-top: 40px;
+}
+
+.bs-calltoaction{
+    position: relative;
+    width:auto;
+    padding: 15px 25px;
+    border: 1px solid black;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+.bs-calltoaction.bs-calltoaction-info{
+    background-color: #eee;
+    border-color: #ddd;
+    opacity: 0.8;
+}
+.cta-button{
+     padding-top: 10px;
+     padding-bottom: 10px;
+}
+.rewardslist{
+  padding-left: 15px;
+}
+.rewardslist li{
+  margin-bottom: 5px;
+}
+/*******  Project Page ********/
+
+/******* Description *********/
+.vid {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; height: 0; overflow: hidden;
+}
+ 
+.vid iframe,
+.vid object,
+.vid embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.borderTopgreen{
+  height: 3px;
+  background: green;
+  
+}
 /******* Description *********/
 
 /******* Reward *************/

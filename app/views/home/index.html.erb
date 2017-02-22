@@ -83,7 +83,7 @@
 					<ul class="nav nav-tabs">
 						<% Product.all.group_by(&:category_id).each_with_index do |products,index| %>
 							<% product = products[1].first %>
-							<li <%= 'class=active' if index == 0 %> ><a href="#<%= product.category.name %>" data-toggle="tab"><%= product.category.name %></a></li>
+							<li <%= 'class=active' if index == 0 %> ><a href="#<%= product.category.name %>" data-toggle="tab"><%= product.category.name unless product.category.nil? %></a></li>
 						<% end %>
 						
 					</ul>

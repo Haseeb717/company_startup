@@ -37,7 +37,7 @@
                         <div class="form-group">
                             <label for="email">Category:</label>
                             <!--<input type="text" class="form-control" id="email"> -->
-                            <%= f.select :category_id,Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, {:class=>"form-control"}  %>
+                            <%= f.select :category_id,Category.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }, {:class=>"form-control",:required=>true}  %>
                         </div>
                       </div>
 

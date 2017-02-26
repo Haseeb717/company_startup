@@ -18,8 +18,14 @@
         <% @products.each do |product| %>
           <div class="col-sm-3 col-md-3">
             <div class="thumbnail">
-              <%= link_to product_path(product) do %>
-                <%= image_tag "pic1.jpg" %>
+              <% if product.image.content_type.nil? %>
+                <%= link_to product_path(product) do %>
+                  <%= image_tag "pic1.jpg" %>
+                <% end %>
+              <% else %>
+                <%= link_to product_path(product) do %>
+                  <%= image_tag product.image.url(:large),:class=>"products_image" %>
+                <% end %>
               <% end %>
               <div class="caption">
                 <h5 class="regularfont"><%= link_to product.short_description.slice(0,55),product_path(product) %></h5>

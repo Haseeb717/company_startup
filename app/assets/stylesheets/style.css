@@ -704,8 +704,12 @@ select#soflow {
   width: 100%;
   margin-top: 10px;
 }
-
-
+.products_image{
+  max-height: 143px;
+}
+.profile_pic_edit{
+  height: 43px;
+}
 
 /************* Media ***********/
 @media(min-width: 298px) and (max-width: 410px){

@@ -12,5 +12,6 @@
  *
  *= require_tree .
  *= require font-awesome
+ *= require video-js
  *= require_self
  */

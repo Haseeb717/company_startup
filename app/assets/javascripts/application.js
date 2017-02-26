@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require jquery.raty
 //= require ratyrate
+//= require video
 //= require_tree .

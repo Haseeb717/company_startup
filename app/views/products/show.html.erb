@@ -14,9 +14,15 @@
       <!--  <img src="http://placehold.it/900x300" class="img-responsive"> -->
     
       <div class="vid">
-        <video width="100%" controls="">
-          <source src="https://ksr-video.imgix.net/projects/2760435/video-738279-h264_high.mp4" type="video/mp4">
-        </video>
+        
+        <% if @product.video.content_type.nil? %>
+          <video width="100%" controls="">
+            <source src="https://ksr-video.imgix.net/projects/2760435/video-738279-h264_high.mp4" type="video/mp4">
+          </video>
+        <% else %>
+          <%= video_tag @product.video.url(), :controls => true,:width=>"100%"  %> 
+        <% end %>
+          
       </div> <!-- vid -->
 
       <hr>
@@ -25,10 +31,15 @@
       <p><b>Risks and Challenges: </b><%= @product.risks %></p>
       <hr>
 
-      <div class="pull-left"><%= image_tag "julia.jpg" ,:class=>"img-circle" %>
-       <p>By <%= @product.user.name %> </p>
-       <p><%= time_ago_in_words(@product.created_at) + " ago" %></p>
-       <p><button class="btn btn-default">Follow</button></p>
+      <div class="pull-left">
+        <% if @product.user.image.content_type.nil? %>   
+          <%= image_tag "julia.jpg" ,:class=>"img-circle" %>
+        <% else %>
+          <%= image_tag @product.user.image.url(:small) ,:class=>"img-circle" %>
+        <% end %>
+        <p>By <%= @product.user.name %> </p>
+        <p><%= time_ago_in_words(@product.created_at) + " ago" %></p>
+        <p><button class="btn btn-default">Follow</button></p>
       </div>
       <div class="pull-right">
         <p>

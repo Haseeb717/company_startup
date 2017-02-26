@@ -9,7 +9,7 @@ class Product < ApplicationRecord
 	ratyrate_rateable "speed", "engine", "price"
 	acts_as_likeable
 
-	has_attached_file :image, styles: { small: "64x64", med: "100x100", large: "200x200" }
+	has_attached_file :image, styles: { small: "64x64>", large: "250x250>" }
 	has_attached_file :video
 	
 	validates_attachment :image, presence: true, :content_type => { :content_type => /\Aimage/ }, :size => { :in => 0..5.megabytes }

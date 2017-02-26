@@ -29,7 +29,7 @@
                       <div class="bs-calltoaction bs-calltoaction-info">
                           <div class="form-group">
                             <label for="title">Project Title:</label>
-                            <%= f.text_field :title,:class=>"form-control",:placeholder=>"Enter you title"%>
+                            <%= f.text_field :title,:class=>"form-control",:placeholder=>"Enter you title",:required=>true %>
                           </div>
                       </div>
                       
@@ -44,35 +44,35 @@
                       <div class="bs-calltoaction bs-calltoaction-info">
                         <div class="form-group">
                           <label for="location">Project Location:</label>
-                          <%= f.text_field :location,:class=>"form-control" %>
+                          <%= f.text_field :location,:class=>"form-control",:required=>true %>
                         </div>
                       </div>
 
                       <div class="bs-calltoaction bs-calltoaction-info">
                         <div class="form-group">
                           <label for="email">Funding goal:</label>
-                          <%= f.text_field :funding_goal,:class=>"form-control",:placeholder=>"$0"%>
+                          <%= f.text_field :funding_goal,:class=>"form-control",:placeholder=>"$0",:required=>true %>
                         </div>
                       </div>
 
                       <div class="bs-calltoaction bs-calltoaction-info">
                         <div class="form-group">
                           <label for="email">Website:</label>
-                          <%= f.text_field :website,:class=>"form-control"%>
+                          <%= f.text_field :website,:class=>"form-control",:required=>true %>
                         </div>
                       </div>
 
                       <div class="bs-calltoaction bs-calltoaction-info">
                         <div class="form-group">
                           <label for="email">Short Description:</label>
-                          <%= f.text_field :short_description,:class=>"form-control"%>
+                          <%= f.text_field :short_description,:class=>"form-control",:required=>true %>
                         </div>
                       </div>
 
                       <div class="bs-calltoaction bs-calltoaction-info">
                         <div class="form-group">
                           <label for="description">Project description:</label>
-                          <%= f.text_area :description,:class=>"form-control",:rows=>6,:placeholder=>"Use your project description to share more about what you’re raising funds to do and how you plan to pull it off. It’s up to you to make the case for your project."%>
+                          <%= f.text_area :description,:class=>"form-control",:rows=>6,:placeholder=>"Use your project description to share more about what you’re raising funds to do and how you plan to pull it off. It’s up to you to make the case for your project.",:required=>true %>
                         </div>
                       </div>
 
@@ -86,14 +86,14 @@
                       <div class="bs-calltoaction bs-calltoaction-info">
                         <div class="form-group">
                           <label for="description">Risks and challenges:</label>
-                          <%= f.text_area :risks,:class=>"form-control",:rows=>6,:placeholder=>"What are the risks and challenges that come with completing your project, and how are you qualified to overcome them?"%>
+                          <%= f.text_area :risks,:class=>"form-control",:rows=>6,:placeholder=>"What are the risks and challenges that come with completing your project, and how are you qualified to overcome them?",:required=>true %>
                         </div>
                       </div>
 
                       <div class="bs-calltoaction bs-calltoaction-info">
                         <div class="form-group">
                           <label for="description">Future Plans:</label>
-                          <%= f.text_area :future_plans,:class=>"form-control",:rows=>4,:placeholder=>""%>
+                          <%= f.text_area :future_plans,:class=>"form-control",:rows=>4,:placeholder=>"",:required=>true %>
                         </div>
                       </div>
 

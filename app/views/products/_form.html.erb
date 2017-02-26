@@ -18,12 +18,12 @@
               <div class="contentproject">
                 <div class="row">
                   <div class="col-md-9">
-                    <%= form_for(@product) do |f| %>
+                    <%= form_for(@product, multipart: true) do |f| %>
                       
                       <div class="bs-calltoaction bs-calltoaction-info">
                           <div class="form-group">
                             <label for="email">Project Image:</label>
-                            <input type="file" class="form-control" id="email">
+                            <%= f.file_field :image, class: "form-control"%>
                           </div>
                       </div>
                       <div class="bs-calltoaction bs-calltoaction-info">
@@ -78,6 +78,13 @@
 
                       <div class="bs-calltoaction bs-calltoaction-info">
                         <div class="form-group">
+                          <%= f.label :tag_list, "Tags (separated by commas)" %>
+                          <%= f.text_field :tag_list,:class=>"form-control" %>
+                        </div>
+                      </div>
+
+                      <div class="bs-calltoaction bs-calltoaction-info">
+                        <div class="form-group">
                           <label for="description">Risks and challenges:</label>
                           <%= f.text_area :risks,:class=>"form-control",:rows=>6,:placeholder=>"What are the risks and challenges that come with completing your project, and how are you qualified to overcome them?"%>
                         </div>
@@ -88,6 +95,13 @@
                           <label for="description">Future Plans:</label>
                           <%= f.text_area :future_plans,:class=>"form-control",:rows=>4,:placeholder=>""%>
                         </div>
+                      </div>
+
+                      <div class="bs-calltoaction bs-calltoaction-info">
+                          <div class="form-group">
+                            <label for="email">Project Video:</label>
+                            <%= f.file_field :video, class: "form-control"%>
+                          </div>
                       </div>
 
                       <div class="text-center">

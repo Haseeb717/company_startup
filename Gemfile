@@ -44,6 +44,19 @@ gem 'activeadmin', github: 'activeadmin'
 
 # for glypicons
 gem "font-awesome-rails"
+
+# for rating
+gem 'ratyrate'
+
+# for socialization
+gem "socialization"
+
+# for tags
+gem 'acts-as-taggable-on'
+
+# for images
+gem 'paperclip'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

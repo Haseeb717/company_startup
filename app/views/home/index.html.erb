@@ -81,14 +81,14 @@
 				<!-- tabs -->
 				<div class="tabbable tabs-right">
 					<ul class="nav nav-tabs">
-						<% Product.all.group_by(&:category_id).each_with_index do |products,index| %>
+						<% Product.all.where(:active=>true).group_by(&:category_id).each_with_index do |products,index| %>
 							<% product = products[1].first %>
 							<li <%= 'class=active' if index == 0 %> ><a href="#<%= product.category.name %>" data-toggle="tab"><%= product.category.name unless product.category.nil? %></a></li>
 						<% end %>
 						
 					</ul>
 					<div class="tab-content">
-						<% Product.all.group_by(&:category_id).each_with_index do |products,index| %>
+						<% Product.all.where(:active=>true).group_by(&:category_id).each_with_index do |products,index| %>
 							<% product = products[1].first %>
 							<div class="tab-pane <%= 'active' if index == 0 %>" id="<%= product.category.name %>" > 
 								<h3 class="regularfont">Projects We Love: <%= product.category.name %> 
@@ -151,119 +151,53 @@
 <!-- Recommended-->
 	<div class="recommended">
 		<div class="container">
-			<h3 class="regularfont">Recommended for you 
-				<span class="pull-right btn btn-default">See all</span></h3>
+			<h3 class="regularfont">Recommended for you
+				<%= link_to recommended_products_path() do %> 
+					<span class="pull-right btn btn-default">See all</span>
+				<% end %> 
+			</h3>
 
-				<div class="row marginTop20">	
+			<div class="row marginTop20">
+				<% @recommended_products.each do |recommended_product| %>	
 					<div class="col-sm-4 col-md-4">
-					    <div class="thumbnail">
-					    	<%= image_tag 'pic1.jpg' %>
-					      <div class="caption">
-					        <h5 class="regularfont">Tortuga 1667: A Pirate Game of Mutiny, Plunder & Deceit</h5>
-					        <p>by Travis Hancock</p>
+				    <div class="thumbnail">
+              <%= link_to product_path(recommended_product) do %>
+                <%= image_tag "pic1.jpg" %>
+              <% end %>
+              <div class="caption">
+                <h5 class="regularfont"><%= link_to recommended_product.short_description.slice(0,55),product_path(recommended_product) %></h5>
+                <p>by <%= recommended_product.user.name %></p>
 
-					        <p class="marginTop10">Steal treasure from the Spanish, but be wary of greedy crewmates who may be secretly plotting to maroon you to the island of Tortuga.</p>
+                <p class="marginTop10"><%= recommended_product.description.slice(0,130) %></p>
 
-					        <p class="marginTop20">
-					        	<span><%= fa_icon "map-marker" %>  Los Angeles, CA  </span>
-					        </p>
-					        <div class="progress customPrograss">
-								<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-									<span class="sr-only">100% Complete (success)</span>
-								</div>
-							</div>
+                <p class="marginTop20">
+                  <span><%= fa_icon "map-marker" %>  <%= recommended_product.location %>  </span>
+                </p>
+                <div class="progress customPrograss">
+                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                    <span class="sr-only">0% Complete (success)</span>
+                  </div>
+                </div>
+              </div>
 
-							<ul class="packages">
-								<li>
-									<strong class="displayBlock">154%</strong>
-									<span>funded</span>
-								</li>
-								<li>
-									<strong class="displayBlock">$10,797</strong>
-									<span>pledged</span>
-								</li>
-								<li>
-									<strong class="displayBlock">22</strong>
-									<span>days to go</span>
-								</li>
-							</ul>
-					      </div>
-					    </div> <!-- thumbnail -->
-					  </div> <!-- col-md-4 -->
-
-					  <div class="col-sm-4 col-md-4">
-					    <div class="thumbnail">
-					    	<%= image_tag 'pic2.jpg' %>
-					      <div class="caption">
-					        <h5 class="regularfont">Chameleon Pens Color Tops: Seamless Color To Color Blends</h5>
-					        <p>by Chameleon Art Product</p>
-
-					        <p class="marginTop10">A whole NEW way to blend color! Create simple seamless color to color blends. The pen literally does the blending for you!</p>
-
-					        <p class="marginTop20">
-					        	<span><%= fa_icon "map-marker" %>  Indianapolis, IN</span>
-					        </p>
-					        <div class="progress customPrograss">
-								<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-									<span class="sr-only">100% Complete (success)</span>
-								</div>
-							</div>
-
-							<ul class="packages">
-								<li>
-									<strong class="displayBlock">754%</strong>
-									<span>funded</span>
-								</li>
-								<li>
-									<strong class="displayBlock">$110,797</strong>
-									<span>pledged</span>
-								</li>
-								<li>
-									<strong class="displayBlock">23</strong>
-									<span>days to go</span>
-								</li>
-							</ul>
-					      </div>
-					    </div> <!-- thumbnail -->
-					  </div> <!-- col-md-4 -->
-
-					  <div class="col-sm-4 col-md-4">
-					    <div class="thumbnail">
-
-					      <%= image_tag 'pic3.jpg' %>
-					      <div class="caption">
-					        <h5 class="regularfont">Trickster</h5>
-					        <p>by Action Phase Games</p>
-
-					        <p class="marginTop10">Steal treasure from the Spanish, but be wary of greedy crewmates who may be secretly plotting to maroon you to the island of Tortuga.</p>
-
-					        <p class="marginTop20">
-					        	<span><%= fa_icon "map-marker" %>   Indianapolis, IN  </span>
-					        </p>
-					        <div class="progress customPrograss">
-								<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-									<span class="sr-only">100% Complete (success)</span>
-								</div>
-							</div>
-
-							<ul class="packages">
-								<li>
-									<strong class="displayBlock">114%</strong>
-									<span>funded</span>
-								</li>
-								<li>
-									<strong class="displayBlock">$11,797</strong>
-									<span>pledged</span>
-								</li>
-								<li>
-									<strong class="displayBlock">22</strong>
-									<span>days to go</span>
-								</li>
-							</ul>
-					      </div>
-					    </div> <!-- thumbnail -->
-					  </div> <!-- col-md-4 -->	
-				</div> <!-- row -->	
+              <ul class="packages">
+                <li>
+                  <strong class="displayBlock">0%</strong>
+                  <span>funded</span>
+                </li>
+                <li>
+                  <strong class="displayBlock">$<%= recommended_product.funding_goal %></strong>
+                  <span>Goal</span>
+                </li>
+                <li>
+                  <strong class="displayBlock">60</strong>
+                  <span>days to go</span>
+                </li>
+              </ul>
+            </div> <!-- thumbnail -->
+			  	</div> <!-- col-md-4 -->
+				<% end %>
+			</div> <!-- row -->	
 		</div> <!-- container -->
 	</div>
 <!-- Recommended-->
@@ -271,118 +205,51 @@
 <!-- popular-->
 	<div class="popular">
 		<div class="container">
-			<h3 class="regularfont">What's Popular 
-				<span class="pull-right btn btn-default">See all</span></h3>
+			<h3 class="regularfont">What's Popular
+				<%= link_to popular_products_path() do %> 
+					<span class="pull-right btn btn-default">See all</span>
+				<% end %>
+			</h3>
 
-				<div class="row marginTop20">	
-					<div class="col-sm-4 col-md-4">
-					    <div class="thumbnail">
-					      <%= image_tag 'pic4.jpg' %>
-					      <div class="caption">
-					        <h5 class="regularfont">Tortuga 1667: A Pirate Game of Mutiny, Plunder & Deceit</h5>
-					        <p>by Travis Hancock</p>
+			<% @popular_products.each do |popular_product| %>	
+				<div class="col-sm-4 col-md-4">
+			    <div class="thumbnail">
+            <%= link_to product_path(popular_product) do %>
+              <%= image_tag "pic1.jpg" %>
+            <% end %>
+            <div class="caption">
+              <h5 class="regularfont"><%= link_to popular_product.short_description.slice(0,55),product_path(popular_product) %></h5>
+              <p>by <%= popular_product.user.name %></p>
 
-					        <p class="marginTop10">Steal treasure from the Spanish, but be wary of greedy crewmates who may be secretly plotting to maroon you to the island of Tortuga.</p>
+              <p class="marginTop10"><%= popular_product.description.slice(0,130) %></p>
 
-					        <p class="marginTop20">
-					        	<span><%= fa_icon "map-marker" %>  Los Angeles, CA  </span>
-					        </p>
-					        <div class="progress customPrograss">
-								<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-									<span class="sr-only">100% Complete (success)</span>
-								</div>
-							</div>
+              <p class="marginTop20">
+                <span><%= fa_icon "map-marker" %>  <%= popular_product.location %>  </span>
+              </p>
+              <div class="progress customPrograss">
+                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                  <span class="sr-only">0% Complete (success)</span>
+                </div>
+              </div>
+            </div>
 
-							<ul class="packages">
-								<li>
-									<strong class="displayBlock">154%</strong>
-									<span>funded</span>
-								</li>
-								<li>
-									<strong class="displayBlock">$10,797</strong>
-									<span>pledged</span>
-								</li>
-								<li>
-									<strong class="displayBlock">22</strong>
-									<span>days to go</span>
-								</li>
-							</ul>
-					      </div>
-					    </div> <!-- thumbnail -->
-					  </div> <!-- col-md-4 -->
-
-					  <div class="col-sm-4 col-md-4">
-					    <div class="thumbnail">
-					    	<%= image_tag 'pic5.png' %>
-					      <div class="caption">
-					        <h5 class="regularfont">Chameleon Pens Color Tops: Seamless Color To Color Blends</h5>
-					        <p>by Chameleon Art Product</p>
-
-					        <p class="marginTop10">A whole NEW way to blend color! Create simple seamless color to color blends. The pen literally does the blending for you!</p>
-
-					        <p class="marginTop20">
-					        	<span><%= fa_icon "map-marker" %>  Indianapolis, IN</span>
-					        </p>
-					        <div class="progress customPrograss">
-								<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-									<span class="sr-only">100% Complete (success)</span>
-								</div>
-							</div>
-
-							<ul class="packages">
-								<li>
-									<strong class="displayBlock">754%</strong>
-									<span>funded</span>
-								</li>
-								<li>
-									<strong class="displayBlock">$110,797</strong>
-									<span>pledged</span>
-								</li>
-								<li>
-									<strong class="displayBlock">23</strong>
-									<span>days to go</span>
-								</li>
-							</ul>
-					      </div>
-					    </div> <!-- thumbnail -->
-					  </div> <!-- col-md-4 -->
-
-					  <div class="col-sm-4 col-md-4">
-					    <div class="thumbnail">
-					      <%= image_tag 'pic6.jpg' %>
-					      <div class="caption">
-					        <h5 class="regularfont">Trickster</h5>
-					        <p>by Action Phase Games</p>
-
-					        <p class="marginTop10">Steal treasure from the Spanish, but be wary of greedy crewmates who may be secretly plotting to maroon you to the island of Tortuga.</p>
-
-					        <p class="marginTop20">
-					        	<span><%= fa_icon "map-marker" %>   Indianapolis, IN  </span>
-					        </p>
-					        <div class="progress customPrograss">
-								<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-									<span class="sr-only">100% Complete (success)</span>
-								</div>
-							</div>
-
-							<ul class="packages">
-								<li>
-									<strong class="displayBlock">114%</strong>
-									<span>funded</span>
-								</li>
-								<li>
-									<strong class="displayBlock">$11,797</strong>
-									<span>pledged</span>
-								</li>
-								<li>
-									<strong class="displayBlock">22</strong>
-									<span>days to go</span>
-								</li>
-							</ul>
-					      </div>
-					    </div> <!-- thumbnail -->
-					  </div> <!-- col-md-4 -->	
-				</div> <!-- row -->
+            <ul class="packages">
+              <li>
+                <strong class="displayBlock">0%</strong>
+                <span>funded</span>
+              </li>
+              <li>
+                <strong class="displayBlock">$<%= popular_product.funding_goal %></strong>
+                <span>Goal</span>
+              </li>
+              <li>
+                <strong class="displayBlock">60</strong>
+                <span>days to go</span>
+              </li>
+            </ul>
+          </div> <!-- thumbnail -->
+		  	</div> <!-- col-md-4 -->
+			<% end %>
 
 		</div> <!-- container -->
 	</div>

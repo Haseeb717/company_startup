@@ -1,15 +1,15 @@
 class ProductsController < ApplicationController
 
-	before_action :set_product, only: [:show, :edit, :update, :destroy,:back,:report]
+	before_action :set_product, only: [:show, :edit, :update, :destroy,:back,:report,:like]
   before_action :authenticate_user!, except: [:index]
 
 	# GET /products
   # GET /products.json
   def index
     if params["category_id"].nil?
-      @products = Product.all
+      @products = Product.all.where(:active=>true)
     else
-      @products = Product.where(:category_id=>params["category_id"])
+      @products = Product.where(:category_id=>params["category_id"],:active=>true)
     end
   end
 
@@ -90,6 +90,38 @@ class ProductsController < ApplicationController
     end
   end
 
+  def like
+    current_user.like!(@product)
+    respond_to do |format|
+      format.html { redirect_to @product }
+    end
+  end
+
+  def recommended
+    if params["category_id"].nil?
+      @products = Product.all.where(:active=>true)
+    else
+      @products = Product.where(:category_id=>params["category_id"],:active=>true)
+    end
+  end
+
+  def popular
+    if params["category_id"].nil?
+      @products = Product.all.where('backers_total >?',0).sort_by(&:backers_total)
+    else
+      @products = Product.where('category_id =? and backers_total >?',params["category_id"],0).sort_by(&:backers_total)
+    end
+  end
+
+  def favorite
+    liked_product_ids = Like.where(:liker_id=>1).pluck(:id)
+    if params["category_id"].nil?
+      @products = Product.where(:id=>liked_product_ids)
+    else
+      @products = Product.where(:id=>liked_product_ids,:category_id=>params["category_id"])
+    end
+  end
+
   private
 
   	# Use callbacks to share common setup or constraints between actions.
@@ -98,7 +130,7 @@ class ProductsController < ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:title, :project, :funding_goal, :description, :category_id, :facebook_url, :website,:risks,:user_id,:location,:future_plans,:short_description,:raised_amount,:backers_total)
+      params.require(:product).permit(:title, :project, :funding_goal, :description, :category_id, :facebook_url, :website,:risks,:user_id,:location,:future_plans,:short_description,:raised_amount,:backers_total,:tag_list,:image,:video)
     end
 end
 

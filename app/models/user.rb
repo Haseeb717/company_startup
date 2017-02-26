@@ -3,10 +3,16 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
        :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable
-
+  
+  ratyrate_rater
+  acts_as_liker
+  
   has_many :products
   has_many :back_products
   has_many :report_products
+
+  has_attached_file :image, styles: { small: "64x64", med: "100x100", large: "200x200" }
+  validates_attachment :image, presence: true, :content_type => { :content_type => /\Aimage/ }, :size => { :in => 0..5.megabytes }
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize do |user|

@@ -37,6 +37,16 @@
         <p>
           <i class="fa fa-tags"></i> Category: <a href=""><span class="badge badge-info"><%= @product.category.name %></span></a> 
         </p>
+        <p>
+          <i class="fa fa-tags"></i> Tags: 
+          <a href="">
+            <% @product.tag_list.each do |tag| %>
+              <span class="badge badge-info">
+                <%= tag %>
+              </span>
+            <% end %>
+          </a> 
+        </p>
       </div>
       <div class="clearfix"></div>
       <hr>
@@ -47,6 +57,9 @@
       <h2>$<%= @product.raised_amount.nil? ? 0 : @product.raised_amount %></h2>
       <p>rasied of $<%= @product.funding_goal %> goal</p>
 
+      <div style="margin-top:20px;"></div>
+      Rating : <%= rating_for @product, 'engine' %>
+
       <h2><%= @product.backers_total %></h2>
       <p>backers</p>
 
@@ -55,18 +68,27 @@
 
       <% backed = BackProduct.where(:user_id=>current_user.id,:product_id=>@product.id) %>
 
-      <%= link_to_if backed.empty?, "Back this Project" ,back_product_path(@product),:class=>"btn btn-success btn-lg product_back_button" %>
+      <%= link_to "Back this Project" ,back_product_path(@product),:class=>"btn btn-success btn-lg product_back_button" %>
       <p class="marginTop20">
-        <button class="btn btn-default"><i class="fa fa-star"></i> Remind me</button> &nbsp;&nbsp;
+        <%= link_to like_product_path(@product),:class=>"btn btn-default" do %>
+          <%= fa_icon "heart" %> Favourite <b><%= @product.likers(User).count %></b>
+        <% end %>&nbsp;&nbsp;
         <button class="btn btn-default"><i class="fa fa-share"></i> Share</button>
         <%= link_to report_product_path(@product),:class=>"btn btn-default" do %>
-        <%= fa_icon "flag" %> Report <%= ReportProduct.where(:product_id=>@product.id).count %>
+        <%= fa_icon "flag" %> Report <b><%= ReportProduct.where(:product_id=>@product.id).count %></b>
       <% end %>
       </p>
       <% if @product.user == current_user %>
         <p>
           <%= link_to edit_product_path(@product),:class=>"btn btn-info btn-lg product_edit_button" do %>
             <%= fa_icon "edit" %> Edit
+          <% end %>
+        </p>
+      <% end %>
+      <% if @product.user == current_user %>
+        <p>
+          <%= link_to @product,  method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger btn-lg product_destroy_button" do %>
+            <%= fa_icon "trash" %> Delete
           <% end %>
         </p>
       <% end %>

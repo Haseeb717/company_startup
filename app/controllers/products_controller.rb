@@ -77,7 +77,7 @@ class ProductsController < ApplicationController
   def back
     BackProduct.create(:product_id=>@product.id,:user_id=>current_user.id)
     backers_total = @product.backers_total + 1
-    @product.update(:backers_total=>backers_total)
+    @product.update_columns(:backers_total=>backers_total)
     respond_to do |format|
       format.html { redirect_to @product }
     end
